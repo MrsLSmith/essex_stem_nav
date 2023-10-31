@@ -1,17 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class Tab3 extends StatelessWidget {
-  const Tab3({super.key});
+void main() {
+  runApp(
+    MaterialApp(
+      theme: ThemeData(useMaterial3: true),
+      home: WebViewApp(),
+    ),
+  );
+}
+
+class WebViewApp extends StatefulWidget {
+  const WebViewApp({super.key});
+
+  @override
+  State<WebViewApp> createState() => _WebViewAppState();
+}
+
+class _WebViewAppState extends State<WebViewApp> {
+  late final WebViewController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = WebViewController()
+      ..loadRequest(
+        Uri.parse('https://www.lsmithphotography.com/'),
+      );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
-          Text("Laptops"),
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter WebView'),
+      ),
+      body: WebViewWidget(
+        controller: controller,
       ),
     );
   }

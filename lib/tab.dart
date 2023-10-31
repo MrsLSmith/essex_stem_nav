@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
             children: <Widget>[
               Tab1(),
               Tab2(),
-              Tab3(),
+              WebViewApp(),
             ],
           )),
     );
